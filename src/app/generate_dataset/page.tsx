@@ -10,7 +10,7 @@ export default function GenerateDatasetPage() {
   const [impairmentLevel, setImpairmentLevel] = useState(0);
   const [seed, setSeed] = useState(123456789);
   const [samplesPerClassTrain, setSamplesPerClassTrain] = useState(10);
-  const [samplesPerClassVal, setSamplesPerClassVal] = useState(2);
+  const [samplesPerClassVal, setSamplesPerClassVal] = useState(20);
   const [transform, setTransform] = useState('ComplexTo2D');
   const [targetTransform, setTargetTransform] = useState('ClassIndex');
 
@@ -27,6 +27,17 @@ export default function GenerateDatasetPage() {
       targetTransform,
     });
     alert('Dataset generation submitted. (Check console for values)');
+  };
+
+  const handleBrowseFolder = async () => {
+    try {
+      // @ts-ignore: TS doesn't know this is supported in some browsers
+      const directoryHandle = await window.showDirectoryPicker();
+      // Use the folder name or make your own mapping logic
+      setSavePath(`./datasets/${directoryHandle.name}`);
+    } catch (err) {
+      console.error("Directory selection cancelled or failed", err);
+    }
   };
 
   return (
@@ -64,17 +75,15 @@ export default function GenerateDatasetPage() {
               className="w-full p-2 rounded border dark:bg-gray-700 dark:text-white"
               placeholder="./datasets/my_dataset"
             />
-            <input
-              type="file"
-              webkitdirectory="true"
-              directory=""
-              className="hidden"
-              id="folderPicker"
-            />
-            <label htmlFor="folderPicker" className="text-sm px-3 py-2 bg-blue-600 text-white rounded cursor-pointer hover:bg-blue-700 transition">
+            <button
+              type="button"
+              onClick={handleBrowseFolder}
+              className="text-sm px-3 py-2 bg-blue-600 text-white rounded cursor-pointer hover:bg-blue-700 transition"
+            >
               Browse
-            </label>
+            </button>
           </div>
+          <p className="text-xs text-gray-500 mt-1">Chrome only: picks a folder and sets the folder name as path.</p>
         </div>
 
         {/* Two-column grid for numeric inputs */}
