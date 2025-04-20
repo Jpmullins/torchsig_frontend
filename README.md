@@ -1,4 +1,4 @@
-Requires [TorchSig] (https://github.com/TorchDSP/torchsig). 
+Requires [TorchSig](https://github.com/TorchDSP/torchsig). 
 
 Recommend to build TorchSig contiainer with modified Dockerfile to include node.js install.
 Add the following lines to the TorchSig Dockerfile after ```apt update, etc.```
