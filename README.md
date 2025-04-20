@@ -1,6 +1,6 @@
 Requires [TorchSig](https://github.com/TorchDSP/torchsig). 
 
-Recommend to build TorchSig contiainer with modified Dockerfile to include node.js install.
+Recommend to build TorchSig container with modified Dockerfile to include node.js install.
 Add the following lines to the TorchSig Dockerfile after ```apt update, etc.```
 ```
 RUN curl -fsSL https://deb.nodesource.com/setup_22.x | bash -
