@@ -1,3 +1,12 @@
+Requires [TorchSig] (https://github.com/TorchDSP/torchsig). 
+
+Recommend to build TorchSig contiainer with modified Dockerfile to include node.js install.
+Add the following lines to the TorchSig Dockerfile after ```apt update, etc.```
+```
+RUN curl -fsSL https://deb.nodesource.com/setup_22.x | bash -
+RUN apt install -y nodejs
+```
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
